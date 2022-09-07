@@ -176,7 +176,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{url('admin/formation')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Formation</p>
                   </a>
@@ -219,7 +219,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <div class="content-header">
+      {{-- <div class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
@@ -233,17 +233,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
-      </div>
+      </div> --}}
       <!-- /.content-header -->
 
       <!-- Main content -->
       <div class="content">
-        <div class="container-fluid">
-          <div class="row">
-
-          </div>
+        {{-- <div class="container-fluid">
+          <div class="row"> --}}
+            @yield('content')
+          {{-- </div> --}}
           <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        {{-- </div><!-- /.container-fluid --> --}}
       </div>
       <!-- /.content -->
     </div>
@@ -259,9 +259,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </aside>
     <!-- /.control-sidebar -->
 <!-- Content Wrapper. Contains page content -->
-       <div class="content-wrapper">
-            @yield('content')
-        </div>
+       {{-- <div class="content-wrapper">
+        </div> --}}
         <!-- /.content-wrapper -->
     <!-- Main Footer -->
     <footer class="main-footer">

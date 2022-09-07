@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('category_prices', function (Blueprint $table) {
             $table->id();
             $table->string('cat_price_name')->unique();
-            $table->unsignedInteger('category_id');
-            $table->unsignedInteger('formation_id');
-            $table->unsignedInteger('posted_by')->nullable();
-            $table->timestamps();
+            $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('story_categories');
+            $table->unsignedBigInteger('formation_id');
             $table->foreign('formation_id')->references('id')->on('story_formations');
+            $table->unsignedBigInteger('posted_by')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -34,5 +34,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('/admin/category', App\Http\Controllers\Admin\CategoryController::class);
+Route::resource('/admin/formation', App\Http\Controllers\Admin\FormationController::class);
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';
