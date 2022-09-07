@@ -9,7 +9,6 @@
 @endsection
 @section('content')
 
-
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -62,9 +61,7 @@
                                             <td>{{ $a->id }}</td>
                                             <td>{{ $a->accountcode }}</td>
                                             <td>{{ $a->account_name }}</td>
-                                            <td>{{ $a->account_group->account_group }}</td>
-                                            <td>{{ $a->account_class->account_class }}</td>
-                                            <td>{{ $a->account_type->account_type }}</td>
+                                            
                                             <td>
                                                 <div class="dropdown show">
                                                     <a class="btn btn-success dropdown-toggle" href="#" role="button"
@@ -74,7 +71,7 @@
                                                     </a>
 
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                        <a href="{{ route('accounts.edit', $a->id) }}"
+                                                        <a href="{{ route('category.edit', $a->id) }}"
                                                             class="dropdown-item">
                                                             <i class="nav-icon fas fa-copy" style="color: blue"></i>
                                                             Edit</a>

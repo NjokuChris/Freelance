@@ -258,7 +258,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
     </aside>
     <!-- /.control-sidebar -->
-
+<!-- Content Wrapper. Contains page content -->
+       <div class="content-wrapper">
+            @yield('content')
+        </div>
+        <!-- /.content-wrapper -->
     <!-- Main Footer -->
     <footer class="main-footer">
       <!-- To the right -->
