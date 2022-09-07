@@ -1,7 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\category_price;
+use App\Models\story_category;
+use App\Models\story_formation;
 use Illuminate\Http\Request;
 
 class FormationController extends Controller
@@ -9,8 +13,8 @@ class FormationController extends Controller
     //
     public function index()
     {
-        $category = story_category::all();
-        return view('Admin.category.index', ['category' => $category]);
+        $formation = story_formation::all();
+        return view('Admin.formation.index', ['formation' => $formation]);
     }
 
     /**
