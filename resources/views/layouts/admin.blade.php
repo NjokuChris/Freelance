@@ -148,6 +148,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
               
             </li>
+            <li class="nav-item {{ Request::is('admin/stories')  ? 'menu-open' : '' }}">
+              <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-copy"></i>
+                    <p>
+                        Stories
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+
+                    <li class="nav-item">
+                        <a href="{{url('admin/stories/create')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                New Stories
+
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('admin/stories')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Manage Stories</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
             <li class="nav-item {{ Request::is('admin/freelancer')  ? 'menu-open' : '' }}">
               <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
@@ -159,7 +187,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <ul class="nav nav-treeview">
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{url('admin/freelancer/create')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>
                                 Register New
@@ -168,7 +196,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{url('admin/freelancer')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Manage Freelancer</p>
                         </a>
@@ -216,6 +244,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <p>Units</p>
                   </a>
                 </li>
+              </ul>
+            </li>
+            <li class="nav-item {{ Request::is('admin/reports') ? 'menu-open' : '' }}">
+              <a class="nav-link {{ Request::is('admin/reports') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>
+                  Reports
+                  <i class="fas fa-angle-left right"></i>
+
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{url('admin/reports')}}" class="nav-link {{ Request::is('admin/reports') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Stories Report</p>
+                  </a>
+                </li>             
+
               </ul>
             </li>
             <li class="nav-item">
