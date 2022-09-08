@@ -21,8 +21,10 @@ return new class extends Migration
             $table->string('l_name');
             $table->unsignedInteger('unit_id')->nullable();
             $table->unsignedInteger('location_id')->nullable();
+            $table->unsignedInteger('posted_by')->nullable();
             $table->foreign('unit_id')->references('id')->on('unit');
             $table->foreign('location_id')->references('id')->on('state');
+            $table->foreign('posted_by')->references('id')->on('users');
             $table->timestamps();
         });
     }

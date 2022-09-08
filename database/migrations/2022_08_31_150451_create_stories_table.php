@@ -16,8 +16,15 @@ return new class extends Migration
         Schema::create('stories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-           // $table->str
+            $table->date('date_publish');
+            $table->unsignedInteger('page_no');
+            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('formation_id');
+            $table->unsignedInteger('posted_by')->nullable();
             $table->timestamps();
+            $table->foreign('category_id')->references('id')->on('story_categories');
+            $table->foreign('formation_id')->references('id')->on('story_formations');
+            $table->foreign('posted_id')->references('id')->on('users');
         });
     }
 
