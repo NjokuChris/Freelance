@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('story_contributors', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('story_id');
-            $table->unsignedInteger('freelancer_id');
+            $table->unsignedBigInteger('story_id');
+            $table->unsignedBigInteger('freelancer_id');
             $table->float('amount');
             $table->timestamps();
             $table->foreign('story_id')->references('id')->on('stories');
