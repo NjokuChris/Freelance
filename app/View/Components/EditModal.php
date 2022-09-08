@@ -13,17 +13,13 @@ class EditModal extends Component
      */
     public $title;
     public $id;
-    public $formation;
-    public $status;
     public $routeName;
 
-    public function __construct($title, $id, $formation, $status, $routeName)
+    public function __construct($title, $id, $routeName)
     {
         //
         $this->title = $title;
         $this->id = $id;
-        $this->formation = $formation;
-        $this->status = $status;
         $this->routeName = $routeName;
     }
 

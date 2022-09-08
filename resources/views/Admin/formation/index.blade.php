@@ -31,7 +31,20 @@
         <div class="container-fluid">
             <p class="">
                 <a class="btn btn-primary"  data-toggle="modal" data-target="#AddModal">Create New Formation</a>
-                <x-add-modal title="Add new formation" routeName="formation"/>
+                <x-add-modal title="Add new formation" routeName="formation">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Formation</label>
+                        <input type="text" class="form-control" name="formation" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter formation">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Status</label>
+                      <select class="form-control" name="status" id="exampleFormControlSelect1">
+                          <option selected disabled>Select a status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                      </select>
+                    </div>
+                </x-add-modal>
             </p>
             <div class="row">
                 <div class="col-12">
@@ -48,7 +61,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Fomration</th>
+                                        <th>Formation</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -69,7 +82,7 @@
                                                     </a>
 
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                        <a  data-toggle="modal" data-target="#UpdateModal"
+                                                        <a  data-toggle="modal" data-target="#UpdateModal{{$item->id}}"
                                                             class="dropdown-item">
                                                             <i class="nav-icon fas fa-copy" style="color: blue"></i>
                                                             Edit
@@ -84,7 +97,20 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                                <x-edit-modal title="Update formation" routeName="formation" :id="$item->id" :formation="$item->formation" :status="$item->status"/>
+                                                <x-edit-modal title="Update formation" routeName="formation" :id="$item->id">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Formation</label>
+                                                        <input type="text" class="form-control" name="formation" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter formation" value="{{ $item->formation }}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleFormControlSelect1">Status</label>
+                                                        <select class="form-control" name="status" id="exampleFormControlSelect1">
+                                                            <option selected disabled>Select a status</option>
+                                                            <option value="active" {{$item->status == 'active' ? 'selected' : ''}}>Active</option>
+                                                            <option value="inactive" {{$item->status == 'inactive' ? 'selected' : ''}}>Inactive</option>
+                                                        </select>
+                                                    </div>
+                                                </x-edit-modal>
                                             </td>
 
                                         </tr>

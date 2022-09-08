@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class story_category extends Model
 {
     use HasFactory;
+
+    public function price()
+    {
+        return $this->hasMany(category_price::class);
+    }
 }

@@ -11,4 +11,8 @@ class story_formation extends Model
     protected $fillable = [
         'status', 'formation'
     ];
+    public function price()
+    {
+        return $this->hasMany(category_price::class);
+    }
 }

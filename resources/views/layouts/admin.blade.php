@@ -136,8 +136,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
+            {{-- <li class="nav-item menu-open"> --}}
+            <li class="nav-item">
+              {{-- <a href="#" class="nav-link active"> --}}
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -146,7 +148,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link active">
+                  {{-- <a href="#" class="nav-link active"> --}}
+                  <a href="#" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Active Page</p>
                   </a>
@@ -159,8 +162,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
+            <li class="nav-item {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') ? 'menu-open' : '' }}">
+              <a href="#" class="nav-link {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-copy"></i>
                 <p>
                   Setups
@@ -170,19 +173,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{url('admin/category')}}" class="nav-link">
+                  <a href="{{url('admin/category')}}" class="nav-link {{ Request::is('admin/category') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Categories</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{url('admin/formation')}}" class="nav-link">
+                  <a href="{{url('admin/formation')}}" class="nav-link {{ Request::is('admin/formation') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Formation</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{url('admin/category-price')}}" class="nav-link {{ Request::is('admin/category-price') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Category Price</p>
                   </a>
