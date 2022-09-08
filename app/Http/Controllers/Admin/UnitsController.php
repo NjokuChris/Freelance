@@ -3,18 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\unit;
 use Illuminate\Http\Request;
 
 class UnitsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $unit = unit::all();
+        return view('Admin.Unit.index', ['unit' => $unit]);
     }
 
     /**
@@ -33,9 +30,13 @@ class UnitsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, unit $unit)
     {
-        //
+        $unit->unit_name = $request->unit_name;
+        $unit->status = $request->status;
+        $unit->save();
+
+        return redirect('admin/units');
     }
 
     /**
@@ -69,7 +70,12 @@ class UnitsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        unit::whereId($id)->update([
+            'unit_name' => $request->unit_name,
+            'status' => $request->status
+        ]);
+
+        return redirect('admin/units')->with('success', 'Units is successfully updated');;
     }
 
     /**
@@ -80,6 +86,9 @@ class UnitsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $unit = unit::findOrFail($id);
+        $unit->delete();
+
+        return redirect('admin/units')->with('success', 'Units is successfully deleted');
     }
 }

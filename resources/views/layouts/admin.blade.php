@@ -148,41 +148,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
               
             </li>
-<<<<<<< HEAD
-            <li class="nav-item {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') || Request::is('admin/page-size') ? 'menu-open' : '' }}">
-              <a href="#" class="nav-link {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') || Request::is('admin/page-size') ? 'active' : '' }}">
-=======
-            <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>
-                                    Freelancer
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
+            <li class="nav-item {{ Request::is('admin/freelancer')  ? 'menu-open' : '' }}">
+                    <i class="nav-icon fas fa-copy"></i>
+                    <p>
+                        Freelancer
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
 
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Register New
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                Register New
 
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Manage Freelancer</p>
-                                    </a>
-                                </li>
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Manage Freelancer</p>
+                        </a>
+                    </li>
 
-                            </ul>
-                        </li>
-            <li class="nav-item {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') ? 'menu-open' : '' }}">
-              <a href="#" class="nav-link {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') ? 'active' : '' }}">
->>>>>>> 8748791eda6fb9487215ab1dd7ddfafdcd8fe598
+                </ul>
+            </li>
+            <li class="nav-item {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') || Request::is('admin/page-size') || Request::is('admin/units') ? 'menu-open' : '' }}">
+              <a class="nav-link {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') || Request::is('admin/page-size') || Request::is('admin/units') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-copy"></i>
                 <p>
                   Setups
@@ -216,7 +210,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ url('admin/units')}}" class="nav-link{{ Request::is('admin/units') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Units</p>
                   </a>
