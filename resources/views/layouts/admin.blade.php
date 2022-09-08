@@ -162,8 +162,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
               </ul>
             </li>
-            <li class="nav-item {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') ? 'menu-open' : '' }}">
-              <a href="#" class="nav-link {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') || Request::is('admin/page-size') ? 'menu-open' : '' }}">
+              <a href="#" class="nav-link {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') || Request::is('admin/page-size') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-copy"></i>
                 <p>
                   Setups
@@ -191,7 +191,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{url('admin/page-size')}}" class="nav-link {{ Request::is('admin/page-size') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Page Size</p>
                   </a>

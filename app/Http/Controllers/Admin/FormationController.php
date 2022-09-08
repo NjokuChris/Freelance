@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\category_price;
-use App\Models\story_category;
 use App\Models\story_formation;
 use Illuminate\Http\Request;
 
