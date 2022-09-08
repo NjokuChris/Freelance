@@ -4,6 +4,7 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -146,43 +147,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-              
+
             </li>
-<<<<<<< HEAD
             <li class="nav-item {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') || Request::is('admin/page-size') ? 'menu-open' : '' }}">
               <a href="#" class="nav-link {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') || Request::is('admin/page-size') ? 'active' : '' }}">
-=======
             <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>
-                                    Freelancer
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>
+                  Freelancer
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
 
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Register New
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                      Register New
 
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Manage Freelancer</p>
-                                    </a>
-                                </li>
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Freelancer</p>
+                  </a>
+                </li>
 
-                            </ul>
-                        </li>
+              </ul>
+            </li>
             <li class="nav-item {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') ? 'menu-open' : '' }}">
               <a href="#" class="nav-link {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') ? 'active' : '' }}">
->>>>>>> 8748791eda6fb9487215ab1dd7ddfafdcd8fe598
                 <i class="nav-icon fas fa-copy"></i>
                 <p>
                   Setups
@@ -224,18 +222,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </ul>
             </li>
             <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                <i class="nav-icon far fa-circle text-danger"></i>
-                                {{ __('Logout') }}
-                            </a>
+                <i class="nav-icon far fa-circle text-danger"></i>
+                {{ __('Logout') }}
+              </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
 
 
-                        </li>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -267,9 +265,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content">
         {{-- <div class="container-fluid">
           <div class="row"> --}}
-            @yield('content')
-          {{-- </div> --}}
-          <!-- /.row -->
+        @yield('content')
+        {{-- </div> --}}
+        <!-- /.row -->
         {{-- </div><!-- /.container-fluid --> --}}
       </div>
       <!-- /.content -->
@@ -285,10 +283,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
     </aside>
     <!-- /.control-sidebar -->
-<!-- Content Wrapper. Contains page content -->
-       {{-- <div class="content-wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    {{-- <div class="content-wrapper">
         </div> --}}
-        <!-- /.content-wrapper -->
+    <!-- /.content-wrapper -->
     <!-- Main Footer -->
     <footer class="main-footer">
       <!-- To the right -->
