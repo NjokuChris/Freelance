@@ -35,6 +35,7 @@ Route::get('/dashboard', function () {
 
 Route::resource('/admin/category', App\Http\Controllers\Admin\CategoryController::class);
 Route::resource('/admin/formation', App\Http\Controllers\Admin\FormationController::class);
+Route::resource('/admin/category-price', App\Http\Controllers\Admin\FormationController::class);
 
 
 require __DIR__ . '/auth.php';

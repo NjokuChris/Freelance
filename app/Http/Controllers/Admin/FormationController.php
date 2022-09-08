@@ -33,9 +33,13 @@ class FormationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, story_formation $formation)
     {
-        //
+        $formation->formation = $request->formation;
+        $formation->status = $request->status;
+        $formation->save();
+
+        return redirect('admin/formation');
     }
 
     /**
@@ -69,7 +73,15 @@ class FormationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        story_formation::whereId($id)->update([
+            'formation' => $request->formation,
+            'status' => $request->status
+        ]);
+        // $formation->formation = $request->formation;
+        // $formation->status = $request->status;
+        // $formation->save();
+
+        return redirect('admin/formation')->with('success', 'Formation is successfully updated');;
     }
 
     /**
@@ -80,6 +92,9 @@ class FormationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $formation = story_formation::findOrFail($id);
+        $formation->delete();
+
+        return redirect('admin/formation')->with('success', 'Formation is successfully deleted');
     }
 }

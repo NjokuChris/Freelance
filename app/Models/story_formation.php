@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class story_formation extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'status', 'formation'
+    ];
 }

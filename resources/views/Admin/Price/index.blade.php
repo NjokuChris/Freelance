@@ -54,7 +54,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($formation as $item)
+                                    @foreach ($price as $item)
                                         <tr>
                                             <td>{{ $item->id }}</td>
                                             <td>{{ $item->formation }}</td>
@@ -62,7 +62,7 @@
                                             
                                             <td>
                                                 <div class="dropdown show">
-                                                    <a class="btn btn-success dropdown-toggle" role="button"
+                                                    <a class="btn btn-success dropdown-toggle" href="#" role="button"
                                                         id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                                         aria-expanded="false">
                                                         Action
@@ -72,19 +72,17 @@
                                                         <a  data-toggle="modal" data-target="#UpdateModal"
                                                             class="dropdown-item">
                                                             <i class="nav-icon fas fa-copy" style="color: blue"></i>
-                                                            Edit
-                                                        </a>
-                                                        <form action="{{ route('formation.destroy', $item->id)}}" method="post">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="dropdown-item">
+                                                            Edit</a>
+                                                        <a href="#" class="dropdown-item">
+                                                            {{-- <form action="{{ route('games.destroy', $game->id)}}" method="post"> --}}
+                                                                @csrf
+                                                                @method('DELETE')
                                                                 <i class="nav-icon fas fa-cut" style="color: red"></i>
-                                                                Terminate
-                                                            </button>
-                                                        </form>
+                                                                Terminate</a>
+                                                            </form>
                                                     </div>
                                                 </div>
-                                                <x-edit-modal title="Update formation" routeName="formation" :id="$item->id" :formation="$item->formation" :status="$item->status"/>
+                                                <x-edit-modal title="Update formation" routeName="price" :id="$item->id" :formation="$item->formation" :status="$item->status"/>
                                             </td>
 
                                         </tr>

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('story_formations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('formation')->unique();
+            $table->string('status');
             $table->timestamps();
             $table->softDeletes();
         });
