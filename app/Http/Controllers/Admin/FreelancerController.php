@@ -3,28 +3,29 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\freelancer;
+use App\Models\state;
+use App\Models\unit;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FreelancerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $freelancers = freelancer::all();
+        $units = unit::all();
+        $users = User::all();
+        $locations = state::all();
+        return view('Admin.Freelancers.index', ['freelancers' => $freelancers, 'units' => $units, 'users' => $users, 'locations' => $locations]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $units = unit::all();
+        $users = User::all();
+        $locations = state::all();
+        return view('Admin.Freelancers.create', ['units' => $units, 'users' => $users, 'locations' => $locations]);
     }
 
     /**
@@ -33,31 +34,18 @@ class FreelancerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, freelancer $freelancer)
     {
-        //
-    }
+        $freelancer->f_name = $request->f_name;
+        $freelancer->m_name = $request->m_name;
+        $freelancer->l_name = $request->l_name;
+        $freelancer->unit_id = $request->unit_id;
+        $freelancer->location_id = $request->location_id;
+        $freelancer->posted_by = $request->posted_by;
+        $freelancer->full_name = $request->f_name . ' ' . $request->m_name . ' ' . $request->l_name;
+        $freelancer->save();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return redirect('admin/freelancers');
     }
 
     /**
@@ -69,7 +57,17 @@ class FreelancerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        freelancer::whereId($id)->update([
+            'f_name' => $request->f_name,
+            'm_name' => $request->m_name,
+            'l_name' => $request->l_name,
+            'unit_id' => $request->unit_id,
+            'location_id' => $request->location_id,
+            'posted_by' => $request->posted_by,
+            'full_name' => $request->f_name . $request->m_name . $request->l_name,
+        ]);
+
+        return redirect('admin/freelancers')->with('success', 'Freelancers is successfully updated');;
     }
 
     /**
@@ -80,6 +78,9 @@ class FreelancerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $price = freelancer::findOrFail($id);
+        $price->delete();
+
+        return redirect('admin/freelancers')->with('success', 'Freelancers is successfully deleted');
     }
 }

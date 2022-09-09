@@ -149,8 +149,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
 
             </li>
-            <li class="nav-item {{ Request::is('admin/freelancer')  ? 'menu-open' : '' }}">
-              <a href="#" class="nav-link">
+            <li class="nav-item {{ Request::is('admin/freelancers') || Request::is('admin/freelancers/create') ? 'menu-open' : '' }}">
+              <a href="#" class="nav-link {{ Request::is('admin/freelancers') || Request::is('admin/freelancers/create') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
                         Freelancer
@@ -160,7 +160,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <ul class="nav nav-treeview">
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{url('admin/freelancers/create')}}" class="nav-link {{ Request::is('admin/freelancers/create') ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>
                                 Register New
@@ -169,7 +169,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{url('admin/freelancers')}}" class="nav-link {{ Request::is('admin/freelancers') ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Manage Freelancer</p>
                         </a>
