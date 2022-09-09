@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(freelancer::class);
     }
+
+    public function story()
+    {
+        return $this->hasMany(story::class);
+    }
 }

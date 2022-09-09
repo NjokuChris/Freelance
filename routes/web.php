@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/admin/page-size', App\Http\Controllers\Admin\PageSizeController::class);
     Route::resource('/admin/freelancers', App\Http\Controllers\Admin\FreelancerController::class);
     Route::resource('/admin/units', App\Http\Controllers\Admin\UnitsController::class);
+    Route::resource('/admin/stories', App\Http\Controllers\Admin\StoriesController::class);
 });
 
 

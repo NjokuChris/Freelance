@@ -64,7 +64,7 @@ class FreelancerController extends Controller
             'unit_id' => $request->unit_id,
             'location_id' => $request->location_id,
             'posted_by' => $request->posted_by,
-            'full_name' => $request->f_name . $request->m_name . $request->l_name,
+            'full_name' => $request->f_name . ' ' . $request->m_name . ' ' . $request->l_name
         ]);
 
         return redirect('admin/freelancers')->with('success', 'Freelancers is successfully updated');;

@@ -13,18 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('stories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->date('date_publish');
-            $table->unsignedInteger('page_no');
-            $table->unsignedInteger('category_id');
-            $table->unsignedInteger('formation_id');
-            $table->unsignedInteger('posted_by')->nullable();
+            $table->unsignedBigInteger('page_no');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('formation_id');
+            $table->unsignedBigInteger('posted_by')->nullable();
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('story_categories');
+
             $table->foreign('formation_id')->references('id')->on('story_formations');
-            $table->foreign('posted_id')->references('id')->on('users');
+            $table->foreign('posted_by')->references('id')->on('users');
         });
     }
 
@@ -35,6 +37,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('stories');
     }
 };

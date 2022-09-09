@@ -13,4 +13,9 @@ class story_category extends Model
     {
         return $this->hasMany(category_price::class);
     }
+
+    public function story()
+    {
+        return $this->hasMany(story::class);
+    }
 }
