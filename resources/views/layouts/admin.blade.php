@@ -4,7 +4,6 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -147,7 +146,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
+              
+            </li>
+            <li class="nav-item {{ Request::is('admin/stories')  ? 'menu-open' : '' }}">
+              <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-copy"></i>
+                    <p>
+                        Stories
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
 
+                    <li class="nav-item">
+                        <a href="{{url('admin/stories/create')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                New Stories
+
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('admin/stories')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Manage Stories</p>
+                        </a>
+                    </li>
+
+                </ul>
             </li>
             <li class="nav-item {{ Request::is('admin/freelancers') || Request::is('admin/freelancers/create') ? 'menu-open' : '' }}">
               <a href="#" class="nav-link {{ Request::is('admin/freelancers') || Request::is('admin/freelancers/create') ? 'active' : '' }}">
@@ -160,7 +187,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <ul class="nav nav-treeview">
 
                     <li class="nav-item">
+<<<<<<< HEAD
                         <a href="{{url('admin/freelancers/create')}}" class="nav-link {{ Request::is('admin/freelancers/create') ? 'active' : '' }}">
+=======
+                        <a href="{{url('admin/freelancer/create')}}" class="nav-link">
+>>>>>>> fbc73baeb492848a0fe3f5f65d868a6e446e7135
                             <i class="far fa-circle nav-icon"></i>
                             <p>
                                 Register New
@@ -169,7 +200,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
                     <li class="nav-item">
+<<<<<<< HEAD
                         <a href="{{url('admin/freelancers')}}" class="nav-link {{ Request::is('admin/freelancers') ? 'active' : '' }}">
+=======
+                        <a href="{{url('admin/freelancer')}}" class="nav-link">
+>>>>>>> fbc73baeb492848a0fe3f5f65d868a6e446e7135
                             <i class="far fa-circle nav-icon"></i>
                             <p>Manage Freelancer</p>
                         </a>
@@ -219,19 +254,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                <i class="nav-icon far fa-circle text-danger"></i>
-                {{ __('Logout') }}
+            <li class="nav-item {{ Request::is('admin/reports') ? 'menu-open' : '' }}">
+              <a class="nav-link {{ Request::is('admin/reports') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>
+                  Reports
+                  <i class="fas fa-angle-left right"></i>
+
+                </p>
               </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{url('admin/reports')}}" class="nav-link {{ Request::is('admin/reports') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Stories Report</p>
+                  </a>
+                </li>             
 
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-              </form>
-
-
+              </ul>
             </li>
+            <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <i class="nav-icon far fa-circle text-danger"></i>
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+
+
+                        </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -263,9 +317,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content">
         {{-- <div class="container-fluid">
           <div class="row"> --}}
-        @yield('content')
-        {{-- </div> --}}
-        <!-- /.row -->
+            @yield('content')
+          {{-- </div> --}}
+          <!-- /.row -->
         {{-- </div><!-- /.container-fluid --> --}}
       </div>
       <!-- /.content -->
@@ -281,10 +335,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
     </aside>
     <!-- /.control-sidebar -->
-    <!-- Content Wrapper. Contains page content -->
-    {{-- <div class="content-wrapper">
+<!-- Content Wrapper. Contains page content -->
+       {{-- <div class="content-wrapper">
         </div> --}}
-    <!-- /.content-wrapper -->
+        <!-- /.content-wrapper -->
     <!-- Main Footer -->
     <footer class="main-footer">
       <!-- To the right -->
