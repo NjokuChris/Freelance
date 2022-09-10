@@ -75,6 +75,27 @@ class StoriesController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $amount = [];
+        $story = story::findOrFail($id);
+        $freelancers = freelancer::all();
+        foreach ($story->contributors as $contributor) {
+            array_push($amount, $contributor->pivot->amount);
+        }
+        return view('Admin.Story.view', ['story' => $story, 'amount' => $amount, 'freelancers' => $freelancers]);
+    }
+
+    public function edit($id)
+    {
+        $story = story::findOrFail($id);
+        $story_category = story_category::all();
+        $story_formation = story_formation::all();
+        $users = User::all();
+        $freelancers = freelancer::all();
+        return view('Admin.Story.edit', ['story' => $story, 'story_formation' => $story_formation, 'users' => $users, 'story_category' => $story_category, 'freelancers' => $freelancers]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -84,7 +105,7 @@ class StoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        freelancer::whereId($id)->update([
+        story::whereId($id)->update([
             'title' => $request->title,
             'page_no' => $request->page_no,
             'date_publish' => $request->date_publish,
@@ -104,7 +125,7 @@ class StoriesController extends Controller
      */
     public function destroy($id)
     {
-        $price = freelancer::findOrFail($id);
+        $price = story::findOrFail($id);
         $price->delete();
 
         return redirect('admin/stories')->with('success', 'stories is successfully deleted');

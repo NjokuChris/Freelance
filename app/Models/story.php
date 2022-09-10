@@ -21,7 +21,7 @@ class story extends Model
 
     public function contributors()
     {
-        return $this->belongsToMany(freelancer::class, 'story_contributors', 'freelancer_id', 'story_id');
+        return $this->belongsToMany(freelancer::class, 'story_contributors', 'freelancer_id', 'story_id')->withPivot('amount');
     }
 
     public function user()

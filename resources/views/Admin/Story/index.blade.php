@@ -49,7 +49,7 @@
                                         <th>Date published</th>
                                         <th>Category</th>
                                         <th>Formation</th>
-                                        {{-- <th>Amount</th> --}}
+                                        <th>Amount</th>
                                         <th>Posted by</th>
                                         <th>Action</th>
                                     </tr>
@@ -63,9 +63,11 @@
                                             <td>{{ $item->date_publish }}</td>
                                             <td>{{ $item->category->category }}</td>
                                             <td>{{ $item->formation->formation }}</td>
-                                            {{-- @foreach ($item->contributors as $itm)
-                                                 <td>{{ $itm->pivot->sum('amount') }}</td>
-                                            @endforeach --}}
+                                            <td>
+                                                @foreach ($item->contributors as $itm)
+                                                    {{ $itm->pivot->sum('amount') }}
+                                                @endforeach
+                                            </td> 
                                             <td>{{ $item->user->name }}</td>
                                             
                                             <td>
@@ -77,11 +79,14 @@
                                                     </a>
 
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                        {{-- <a  data-toggle="modal" data-target="#UpdateModal{{$item->id}}"
-                                                            class="dropdown-item">
-                                                            <i class="nav-icon fas fa-copy" style="color: blue"></i>
+                                                        <a href="{{ url('admin/stories', $item->id ) }}" class="dropdown-item">
+                                                            <i class="nav-icon fas fa-eye" style="color: blue"></i>
+                                                            View
+                                                        </a>
+                                                        <a href="{{ url('admin/stories/'.$item->id.'/edit') }}" class="dropdown-item">
+                                                            <i class="nav-icon fas fa-copy" style="color: yellow"></i>
                                                             Edit
-                                                        </a> --}}
+                                                        </a>
                                                         <form action="{{ route('stories.destroy', $item->id)}}" method="post">
                                                             @csrf
                                                             @method('DELETE')

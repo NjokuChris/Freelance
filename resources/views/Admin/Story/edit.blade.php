@@ -36,33 +36,33 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Create Stories</h3>
+                            <h3 class="card-title">Edit Stories</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body" >
-                            <form  method="post" action="{{ route('stories.store') }}" enctype="multipart/form-data" class="container">
+                            <form  method="post" action="{{ route('stories.update', $story->id) }}" enctype="multipart/form-data" class="container">
                                 @csrf
                                 <div class="row">
                                     <div class="form-group col">
                                         <label for="exampleInputEmail1">Title</label>
-                                        <input type="text" class="form-control" name="title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
+                                        <input type="text" class="form-control" name="title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title" value="{{ $story->title }}">
                                     </div>
                                     <div class="form-group col">
                                         <label for="exampleInputEmail2">Page No</label>
-                                        <input type="number" class="form-control" name="page_no" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter page number">
+                                        <input type="number" class="form-control" name="page_no" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter page number"  value="{{ $story->page_no }}">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col">
                                         <label for="exampleInputEmail3">Date published</label>
-                                        <input type="date" class="form-control" name="date_publish" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter date published">
+                                        <input type="date" class="form-control" name="date_publish" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter date published" value="{{ $story->date_publish }}">
                                     </div>
                                     <div class="form-group col">
                                         <label for="exampleFormControlSelect1">Category</label>
                                         <select class="form-control category" name="category_id" id="exampleFormControlSelect1">
                                             <option selected disabled>Select a category</option>
                                             @foreach($story_category as $category)
-                                                <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                                <option value="{{ $category->id }}" {{$category->id == $story->category_id ? 'selected' : ''}}>{{ $category->category }}</option>
                                             @endforeach
                                     </select>
                                     </div>
@@ -73,7 +73,7 @@
                                         <select class="form-control" name="formation_id" id="exampleFormControlSelect2">
                                             <option selected disabled>Select a formation</option>
                                             @foreach($story_formation as $formation)
-                                                <option value="{{ $formation->id }}">{{ $formation->formation }}</option>
+                                                <option value="{{ $formation->id }}" {{$formation->id == $story->formation_id ? 'selected' : ''}}>{{ $formation->formation }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -82,7 +82,7 @@
                                         <select class="form-control" name="posted_by" id="exampleFormControlSelect3">
                                             <option selected disabled>Select a User</option>
                                             @foreach($users as $user)
-                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                <option value="{{ $user->id }}" {{$user->id == $story->posted_by ? 'selected' : ''}}>{{ $user->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -93,9 +93,14 @@
                                         <a class="btn border-secondary dropdown-toggle w-50 text-left" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Select freelancers
                                         </a>
-                                      
+                                        {{-- @php
+                                        foreach($story->contributors as $itm){
+                                            dd($itm->pivot->freelancer_id);
+                                        }
+                                        @endphp --}}
                                         <div class="dropdown-menu w-50" aria-labelledby="dropdownMenuLink">
                                             @foreach($freelancers as $freelancer)
+                                            {{-- @foreach($story->contributors as $itm) --}}
                                                 <div class="dropdown-item">
                                                     <div class="form-check">
                                                         <input class="form-check-input freelanceChx" name="freelancers[]" type="checkbox" value="{{$freelancer->id}}" id="defaultCheck{{$freelancer->id}}">
@@ -104,6 +109,7 @@
                                                         </label>
                                                     </div>
                                                 </div>
+                                            {{-- @endforeach --}}
                                             @endforeach
                                         </div>
                                       </div>
@@ -120,13 +126,24 @@
             <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
-    </section>  
+    </section> 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
     <script>
-        $(function() {
-            $("#exampleFormControlSelect1").change(() =>
-            {
+        $(document).ready(function() {
                 console.log('selectedCategory');
+                var selectedCategory = $("#exampleFormControlSelect1").val()
+                console.log(selectedCategory)
+
+                if (selectedCategory == '2')
+                {
+                    $(".freelanceChx").attr("type", "radio")
+                }
+                else{
+                    $(".freelanceChx").attr("type", "checkbox")
+                }
+
+            $("#exampleFormControlSelect1").load(() =>
+            {
                 var selectedCategory = $("#exampleFormControlSelect1").val()
                 console.log(selectedCategory)
 
