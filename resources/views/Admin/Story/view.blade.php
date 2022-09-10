@@ -100,7 +100,7 @@
                                         </p>
                                         <ul class="text-secondary text-lg">
                                             @foreach($story->contributors as $item)
-                                                <li>{{ $item->ful_name}}</li>
+                                                <li>{{ $item->full_name}}</li>
                                             @endforeach
                                         </ul>
                                     </div>
