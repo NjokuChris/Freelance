@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('cat_price_name')->unique();
             $table->unsignedBigInteger('category_id');
+            $table->float('amount');
             $table->foreign('category_id')->references('id')->on('story_categories');
             $table->unsignedBigInteger('formation_id');
             $table->foreign('formation_id')->references('id')->on('story_formations');
