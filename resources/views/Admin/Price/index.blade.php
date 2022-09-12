@@ -33,8 +33,8 @@
                 <a class="btn btn-primary"  data-toggle="modal" data-target="#AddModal">Create Category Price</a>
                 <x-add-modal title="Add new category price" routeName="category-price">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Category Price Name</label>
-                        <input type="text" class="form-control" name="cat_price_name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter price name">
+                        <label for="exampleInputEmail1">Amount</label>
+                        <input type="text" class="form-control" name="amount" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter price name">
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">Formation</label>
@@ -54,18 +54,15 @@
                               @endforeach
                         </select>
                       </div>
-                      <div class="form-group">
-                        <label for="exampleFormControlSelect1">Posted by</label>
-                        <select class="form-control" name="posted_by" id="exampleFormControlSelect1">
-                            <option selected disabled>Select a status</option>
-                            <option value="0">Active</option>
-                            <option value="1">Inactive</option>
-                        </select>
-                      </div> 
                 </x-add-modal>
             </p>
             <div class="row">
                 <div class="col-12">
+                    @if (session('status'))
+                        <div class="alert alert-danger">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
                     <!-- /.card -->
 
@@ -79,7 +76,8 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Category price</th>
+                                        <th>Category price name</th>
+                                        <th>Amount</th>
                                         <th>Formation</th>
                                         <th>Category</th>
                                         <th>Posted by</th>
@@ -90,10 +88,17 @@
                                     @foreach ($price as $item)
                                         <tr>
                                             <td>{{ $item->id }}</td>
-                                            <td>{{ $item->cat_price_name }}</td>
+                                            <td>{{ $item->category->category.' - '.$item->formation->formation }}</td>
+                                            <td>{{ $item->amount }}</td>
                                             <td>{{ $item->formation->formation }}</td>
                                             <td>{{ $item->category->category }}</td>
-                                            <td>{{ $item->posted_by }}</td>
+                                            <td>
+                                                @if($item->user == NULL)
+                                                    --
+                                                @else
+                                                    {{ $item->user->name }}
+                                                @endif
+                                            </td>
                                             
                                             <td>
                                                 <div class="dropdown show">
@@ -120,13 +125,13 @@
                                                 </div>
                                                 <x-edit-modal title="Update category price" routeName="category-price" :id="$item->id">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Category Price Name</label>
-                                                        <input type="text" class="form-control" name="cat_price_name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter price name" value="{{ $item->cat_price_name }}">
+                                                        <label for="exampleInputEmail1">Amount</label>
+                                                        <input type="text" class="form-control" name="amount" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter price name" value="{{ $item->amount }}">
                                                     </div>
                                                     <div class="form-group">
                                                       <label for="exampleFormControlSelect1">Formation</label>
                                                       <select class="form-control" name="formation_id" id="exampleFormControlSelect1">
-                                                          <option selected disabled>Select a status</option>
+                                                          <option selected disabled>Select a formation</option>
                                                             @foreach ($formation as $itm)
                                                               <option value="{{ $itm->id }}" {{$itm->id == $item->formation_id ? 'selected' : ''}}>{{ $itm->formation }}</option>
                                                             @endforeach
@@ -135,18 +140,10 @@
                                                     <div class="form-group">
                                                         <label for="exampleFormControlSelect1">Category</label>
                                                         <select class="form-control" name="category_id" id="exampleFormControlSelect1">
-                                                            <option selected disabled>Select a status</option>
+                                                            <option selected disabled>Select a category</option>
                                                               @foreach ($category as $itm)
                                                                 <option value="{{ $itm->id }}" {{$itm->id == $item->category_id ? 'selected' : ''}}>{{ $itm->category }}</option>
                                                               @endforeach
-                                                        </select>
-                                                      </div>
-                                                      <div class="form-group">
-                                                        <label for="exampleFormControlSelect1">Posted by</label>
-                                                        <select class="form-control" name="posted_by" id="exampleFormControlSelect1">
-                                                            <option selected disabled>Select a status</option>
-                                                            <option value="0">Active</option>
-                                                            <option value="1">Inactive</option>
                                                         </select>
                                                       </div>
                                                 </x-edit-modal>

@@ -23,4 +23,9 @@ class category_price extends Model
     {
         return $this->belongsTo(story_formation::class, 'formation_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'posted_by');
+    }
 }

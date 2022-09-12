@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('story_formations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('formation')->unique();
+            $table->string('formation')->unique();
             $table->string('status');
             $table->timestamps();
             $table->softDeletes();
@@ -29,6 +30,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('story_formations');
     }
 };

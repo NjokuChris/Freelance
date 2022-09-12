@@ -60,9 +60,27 @@
                                             <td>{{ $item->f_name }}</td>
                                             <td>{{ $item->l_name }}</td>
                                             <td>{{ $item->m_name }}</td>
-                                            <td>{{ $item->unit->unit_name }}</td>
-                                            <td>{{ $item->state->st_name }}</td>
-                                            <td>{{ $item->user->name }}</td>
+                                            <td>
+                                                @if($item->unit == NULL)
+                                                    --
+                                                @else
+                                                    {{ $item->unit->unit_name }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($item->state == NULL)
+                                                    --
+                                                @else
+                                                    {{ $item->state->st_name }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($item->user == NULL)
+                                                    --
+                                                @else
+                                                    {{ $item->user->name }}
+                                                @endif
+                                            </td>
                                             
                                             <td>
                                                 <div class="dropdown show">
@@ -116,15 +134,6 @@
                                                             <option selected disabled>Select a location</option>
                                                             @foreach($locations as $location)
                                                                 <option value="{{ $location->id }}"  {{$location->id == $item->location_id ? 'selected' : ''}}>{{ $location->st_name }}</option>
-                                                            @endforeach
-                                                      </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleFormControlSelect3">User</label>
-                                                        <select class="form-control" name="posted_by" id="exampleFormControlSelect3">
-                                                            <option selected disabled>Select a User</option>
-                                                            @foreach($users as $user)
-                                                                <option value="{{ $user->id }}"  {{$user->id == $item->posted_by ? 'selected' : ''}}>{{ $user->name }}</option>
                                                             @endforeach
                                                       </select>
                                                     </div>

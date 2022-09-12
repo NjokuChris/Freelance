@@ -68,7 +68,13 @@
                                                     {{ $itm->pivot->sum('amount') }}
                                                 @endforeach
                                             </td> 
-                                            <td>{{ $item->user->name }}</td>
+                                            <td>
+                                                @if($item->user == NULL)
+                                                    --
+                                                @else
+                                                    {{ $item->user->name }}
+                                                @endif
+                                            </td>
                                             
                                             <td>
                                                 <div class="dropdown show">
@@ -97,47 +103,6 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                                <x-edit-modal title="Update freelancer" routeName="stories" :id="$item->id">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Title</label>
-                                                        <input type="text" class="form-control" name="title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title" value="{{ $item->title }}">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail2">Page No</label>
-                                                        <input type="number" class="form-control" name="page_no" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter page number" value="{{ $item->page_no }}">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail3">Date published</label>
-                                                        <input type="date" class="form-control" name="date_publish" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter date published" value="{{ $item->date_publish }}">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleFormControlSelect1">Category</label>
-                                                        <select class="form-control" name="category_id" id="exampleFormControlSelect1">
-                                                            <option selected disabled>Select a category</option>
-                                                            @foreach($story_category as $category)
-                                                                <option value="{{ $category->id }}"  {{$category->id == $item->category_id ? 'selected' : ''}}>{{ $category->category }}</option>
-                                                            @endforeach
-                                                      </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleFormControlSelect2">Formation</label>
-                                                        <select class="form-control" name="formation_id" id="exampleFormControlSelect2">
-                                                            <option selected disabled>Select a formation</option>
-                                                            @foreach($story_formation as $formation)
-                                                                <option value="{{ $formation->id }}"  {{$formation->id == $item->formation_id ? 'selected' : ''}}>{{ $formation->formation }}</option>
-                                                            @endforeach
-                                                      </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleFormControlSelect3">User</label>
-                                                        <select class="form-control" name="posted_by" id="exampleFormControlSelect3">
-                                                            <option selected disabled>Select a User</option>
-                                                            @foreach($users as $user)
-                                                                <option value="{{ $user->id }}"  {{$user->id == $item->posted_by ? 'selected' : ''}}>{{ $user->name }}</option>
-                                                            @endforeach
-                                                      </select>
-                                                    </div>
-                                                </x-edit-modal>
                                             </td>
 
                                         </tr>

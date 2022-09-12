@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\freelancer;
 use App\Models\state;
@@ -15,17 +16,15 @@ class FreelancerController extends Controller
     {
         $freelancers = freelancer::all();
         $units = unit::all();
-        $users = User::all();
         $locations = state::all();
-        return view('Admin.Freelancers.index', ['freelancers' => $freelancers, 'units' => $units, 'users' => $users, 'locations' => $locations]);
+        return view('Admin.Freelancers.index', ['freelancers' => $freelancers, 'units' => $units, 'locations' => $locations]);
     }
 
     public function create()
     {
         $units = unit::all();
-        $users = User::all();
         $locations = state::all();
-        return view('Admin.Freelancers.create', ['units' => $units, 'users' => $users, 'locations' => $locations]);
+        return view('Admin.Freelancers.create', ['units' => $units, 'locations' => $locations]);
     }
 
     /**
@@ -41,7 +40,7 @@ class FreelancerController extends Controller
         $freelancer->l_name = $request->l_name;
         $freelancer->unit_id = $request->unit_id;
         $freelancer->location_id = $request->location_id;
-        $freelancer->posted_by = $request->posted_by;
+        $freelancer->posted_by = Auth::id();
         $freelancer->full_name = $request->f_name . ' ' . $request->m_name . ' ' . $request->l_name;
         $freelancer->save();
 
@@ -63,7 +62,7 @@ class FreelancerController extends Controller
             'l_name' => $request->l_name,
             'unit_id' => $request->unit_id,
             'location_id' => $request->location_id,
-            'posted_by' => $request->posted_by,
+            'posted_by' => Auth::id(),
             'full_name' => $request->f_name . ' ' . $request->m_name . ' ' . $request->l_name
         ]);
 

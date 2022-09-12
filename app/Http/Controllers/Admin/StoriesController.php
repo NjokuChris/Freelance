@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\freelancer;
 use App\Models\story;
@@ -18,18 +19,16 @@ class StoriesController extends Controller
         $stories = story::all();
         $story_category = story_category::all();
         $story_formation = story_formation::all();
-        $users = User::all();
         $freelancers = freelancer::all();
-        return view('Admin.Story.index', ['stories' => $stories, 'story_formation' => $story_formation, 'users' => $users, 'story_category' => $story_category, 'freelancers' => $freelancers]);
+        return view('Admin.Story.index', ['stories' => $stories, 'story_formation' => $story_formation, 'story_category' => $story_category, 'freelancers' => $freelancers]);
     }
 
     public function create()
     {
         $story_category = story_category::all();
         $story_formation = story_formation::all();
-        $users = User::all();
         $freelancers = freelancer::all();
-        return view('Admin.story.create', ['story_category' => $story_category, 'users' => $users, 'story_formation' => $story_formation, 'freelancers' => $freelancers]);
+        return view('Admin.story.create', ['story_category' => $story_category, 'story_formation' => $story_formation, 'freelancers' => $freelancers]);
     }
 
     /**
@@ -45,7 +44,7 @@ class StoriesController extends Controller
         $story->date_publish = $request->date_publish;
         $story->category_id = $request->category_id;
         $story->formation_id = $request->formation_id;
-        $story->posted_by = $request->posted_by;
+        $story->posted_by = Auth::id();
         $story->save();
 
         $this->storeContributors($request, $story);
@@ -91,9 +90,8 @@ class StoriesController extends Controller
         $story = story::findOrFail($id);
         $story_category = story_category::all();
         $story_formation = story_formation::all();
-        $users = User::all();
         $freelancers = freelancer::all();
-        return view('Admin.Story.edit', ['story' => $story, 'story_formation' => $story_formation, 'users' => $users, 'story_category' => $story_category, 'freelancers' => $freelancers]);
+        return view('Admin.Story.edit', ['story' => $story, 'story_formation' => $story_formation, 'story_category' => $story_category, 'freelancers' => $freelancers]);
     }
 
     /**
@@ -111,7 +109,7 @@ class StoriesController extends Controller
             'date_publish' => $request->date_publish,
             'category_id' => $request->category_id,
             'formation_id' => $request->formation_id,
-            'posted_by' => $request->posted_by
+            'posted_by' => Auth::id()
         ]);
 
         return redirect('admin/stories')->with('success', 'stories is successfully updated');;

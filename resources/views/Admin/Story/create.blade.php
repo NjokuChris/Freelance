@@ -78,35 +78,26 @@
                                         </select>
                                     </div>
                                     <div class="form-group col">
-                                        <label for="exampleFormControlSelect3">User</label>
-                                        <select class="form-control" name="posted_by" id="exampleFormControlSelect3">
-                                            <option selected disabled>Select a User</option>
-                                            @foreach($users as $user)
-                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect4">Freelancers</label>
-                                    <div class="dropdown show">
-                                        <a class="btn border-secondary dropdown-toggle w-50 text-left" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Select freelancers
-                                        </a>
-                                      
-                                        <div class="dropdown-menu w-50" aria-labelledby="dropdownMenuLink">
-                                            @foreach($freelancers as $freelancer)
-                                                <div class="dropdown-item">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input freelanceChx" name="freelancers[]" type="checkbox" value="{{$freelancer->id}}" id="defaultCheck{{$freelancer->id}}">
-                                                        <label class="form-check-label" for="defaultCheck{{$freelancer->id}}">
-                                                            {{ $freelancer->full_name }}
-                                                        </label>
+                                        <label for="exampleFormControlSelect4">Freelancers</label>
+                                        <div class="dropdown show">
+                                            <a class="btn border-secondary dropdown-toggle w-100 text-left" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Select freelancers
+                                            </a>
+                                          
+                                            <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
+                                                @foreach($freelancers as $freelancer)
+                                                    <div class="dropdown-item">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input freelanceChx" name="freelancers[]" type="checkbox" value="{{$freelancer->id}}" id="defaultCheck{{$freelancer->id}}">
+                                                            <label class="form-check-label" for="defaultCheck{{$freelancer->id}}">
+                                                                {{ $freelancer->full_name }}
+                                                            </label>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                      </div>
+                                                @endforeach
+                                            </div>
+                                          </div>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Save changes</button>
                             </form>
@@ -127,10 +118,10 @@
             $("#exampleFormControlSelect1").change(() =>
             {
                 console.log('selectedCategory');
-                var selectedCategory = $("#exampleFormControlSelect1").val()
+                var selectedCategory = $("#exampleFormControlSelect1  option:selected").html()
                 console.log(selectedCategory)
 
-                if (selectedCategory == '2')
+                if (selectedCategory == 'Standalone')
                 {
                     $(".freelanceChx").attr("type", "radio")
                 }

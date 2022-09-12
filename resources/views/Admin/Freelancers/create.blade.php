@@ -77,15 +77,6 @@
                                             @endforeach
                                     </select>
                                     </div>
-                                    <div class="form-group col">
-                                        <label for="exampleFormControlSelect3">User</label>
-                                        <select class="form-control" name="posted_by" id="exampleFormControlSelect3">
-                                            <option selected disabled>Select a User</option>
-                                            @foreach($users as $user)
-                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Save changes</button>
                             </form>

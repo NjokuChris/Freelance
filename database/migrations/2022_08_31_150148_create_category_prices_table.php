@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('category_prices', function (Blueprint $table) {
             $table->id();
-            $table->string('cat_price_name')->unique();
             $table->unsignedBigInteger('category_id');
             $table->float('amount');
             $table->foreign('category_id')->references('id')->on('story_categories');
@@ -33,6 +33,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('category_prices');
     }
 };
