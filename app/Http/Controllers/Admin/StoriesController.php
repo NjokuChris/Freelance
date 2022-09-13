@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\category_price;
 use App\Models\freelancer;
 use App\Models\story;
 use App\Models\story_category;
@@ -45,33 +46,16 @@ class StoriesController extends Controller
         $story->category_id = $request->category_id;
         $story->formation_id = $request->formation_id;
         $story->posted_by = Auth::id();
+
         $story->save();
 
-        $this->storeContributors($request, $story);
+        $amount = category_price::select('amount')
+            ->where('category_id', $request->category_id)
+            ->where('formation_id', $request->formation_id)
+            ->pluck('amount')->first();
+
+        $story->contributors()->attach($request->freelancers, ['amount' => $amount]);
         return redirect('admin/stories');
-    }
-
-    public function storeContributors($request, $story)
-    {
-        $amount = $this->amount($request);
-        foreach ($request->freelancers as $freelancer) {
-            story_contributor::create([
-                'story_id' => $story->id,
-                'freelancer_id' => $freelancer,
-                'amount' => $amount
-            ]);
-        }
-    }
-
-    public function amount($request)
-    {
-        $count = count($request->freelancers);
-
-        if ($count < 2) {
-            return 2000;
-        } else {
-            return 1000;
-        }
     }
 
     public function show($id)
@@ -103,7 +87,9 @@ class StoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        story::whereId($id)->update([
+        $story = story::find($id);
+        $story->contributors()->detach($request->freelancers);
+        $story->update([
             'title' => $request->title,
             'page_no' => $request->page_no,
             'date_publish' => $request->date_publish,
@@ -111,6 +97,13 @@ class StoriesController extends Controller
             'formation_id' => $request->formation_id,
             'posted_by' => Auth::id()
         ]);
+
+        $amount = category_price::select('amount')
+            ->where('category_id', $request->category_id)
+            ->where('formation_id', $request->formation_id)
+            ->pluck('amount')->first();
+
+        $story->contributors()->attach($request->freelancers, ['amount' => $amount]);
 
         return redirect('admin/stories')->with('success', 'stories is successfully updated');;
     }

@@ -42,6 +42,7 @@
                         <div class="card-body" >
                             <form  method="post" action="{{ route('stories.update', $story->id) }}" enctype="multipart/form-data" class="container">
                                 @csrf
+                                @method('PATCH')
                                 <div class="row">
                                     <div class="form-group col">
                                         <label for="exampleInputEmail1">Title</label>
@@ -83,23 +84,16 @@
                                             <a class="btn border-secondary dropdown-toggle w-100 text-left" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Select freelancers
                                             </a>
-                                            {{-- @php
-                                            foreach($story->contributors as $itm){
-                                                dd($itm->pivot->freelancer_id);
-                                            }
-                                            @endphp --}}
                                             <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
                                                 @foreach($freelancers as $freelancer)
-                                                {{-- @foreach($story->contributors as $itm) --}}
                                                     <div class="dropdown-item">
                                                         <div class="form-check">
-                                                            <input class="form-check-input freelanceChx" name="freelancers[]" type="checkbox" value="{{$freelancer->id}}" id="defaultCheck{{$freelancer->id}}">
+                                                            <input class="form-check-input freelanceChx" name="freelancers[]" type="checkbox" value="{{$freelancer->id}}" id="defaultCheck{{$freelancer->id}}" {{ $story->contributors->contains($freelancer) ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="defaultCheck{{$freelancer->id}}">
                                                                 {{ $freelancer->full_name }}
                                                             </label>
                                                         </div>
                                                     </div>
-                                                {{-- @endforeach --}}
                                                 @endforeach
                                             </div>
                                           </div>

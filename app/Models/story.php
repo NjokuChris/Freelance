@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class story extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title', 'page_no', 'date_publish', 'category_id', 'formation_id'
+    ];
+
 
     public function category()
     {
@@ -21,7 +25,7 @@ class story extends Model
 
     public function contributors()
     {
-        return $this->belongsToMany(freelancer::class, 'story_contributors', 'freelancer_id', 'story_id')->withPivot('amount');
+        return $this->belongsToMany(freelancer::class, 'story_contributors')->withPivot('amount'); //, 'freelancer_id', 'story_id')->withPivot('amount');
     }
 
     public function user()

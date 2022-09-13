@@ -26,6 +26,6 @@ class freelancer extends Model
 
     public function stories()
     {
-        return $this->belongsToMany(story::class, 'story_contributors', 'story_id', 'freelancer_id');
+        return $this->belongsToMany(story::class, 'story_contributors'); //, 'story_id', 'freelancer_id');
     }
 }

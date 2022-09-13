@@ -64,9 +64,13 @@
                                             <td>{{ $item->category->category }}</td>
                                             <td>{{ $item->formation->formation }}</td>
                                             <td>
-                                                @foreach ($item->contributors as $itm)
-                                                    {{ $itm->pivot->sum('amount') }}
-                                                @endforeach
+                                                @php
+                                                    $amount = [];
+                                                    foreach ($item->contributors as $itm){
+                                                        array_push($amount, $itm->pivot->amount);
+                                                    }
+                                                    echo array_sum($amount)
+                                                @endphp
                                             </td> 
                                             <td>
                                                 @if($item->user == NULL)
@@ -74,8 +78,7 @@
                                                 @else
                                                     {{ $item->user->name }}
                                                 @endif
-                                            </td>
-                                            
+                                            </td>                                           
                                             <td>
                                                 <div class="dropdown show">
                                                     <a class="btn btn-success dropdown-toggle" role="button"

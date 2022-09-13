@@ -108,11 +108,14 @@
                                         <p class="text-dark">
                                             <strong>Total amount earned</strong>
                                         </p>
-                                        <ul class="text-secondary text-lg">
+                                        <p class="text-secondary text-lg">
+                                            {{ array_sum($amount) }}
+                                        </p>
+                                        {{-- <ul class="text-secondary text-lg">
                                             @foreach($amount as $item)
-                                                <li>{{ $item }}</li>
+                                                <li>{{ array_sum($amount) }}</li>
                                             @endforeach
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                             </div>
