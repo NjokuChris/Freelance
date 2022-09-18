@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         $category = story_category::all();
-        return view('Admin.category.index', ['category' => $category]);
+        return view('Admin.Category.index', ['category' => $category]);
     }
 
     /**
