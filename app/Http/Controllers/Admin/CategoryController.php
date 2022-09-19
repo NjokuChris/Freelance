@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        //
     }
 
     /**
@@ -75,7 +75,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        story_category::whereId($id)->update([
+            'category' => $request->category,
+        ]);
+
+        return redirect('admin/category')->with('success', 'Category is successfully updated');;
     }
 
     /**
@@ -86,6 +90,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = story_category::findOrFail($id);
+        $category->delete();
+
+        return redirect('admin/category')->with('success', 'Category is successfully deleted');
     }
 }

@@ -29,7 +29,7 @@ class StoriesController extends Controller
         $story_category = story_category::all();
         $story_formation = story_formation::all();
         $freelancers = freelancer::all();
-        return view('Admin.story.create', ['story_category' => $story_category, 'story_formation' => $story_formation, 'freelancers' => $freelancers]);
+        return view('Admin.Story.create', ['story_category' => $story_category, 'story_formation' => $story_formation, 'freelancers' => $freelancers]);
     }
 
     /**

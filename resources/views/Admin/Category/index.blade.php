@@ -14,12 +14,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>DataTables</h1>
+                    <h1>Categories</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">DataTables</li>
+                        <li class="breadcrumb-item active">Categories</li>
                     </ol>
                 </div>
             </div>
@@ -29,9 +29,15 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <p>
-                <a href="{{route('category.create')}}" class="btn btn-primary">Create New Account</a>
-                </p>
+            <p class="">
+                <a class="btn btn-primary"  data-toggle="modal" data-target="#AddModal">Create New Category</a>
+                <x-add-modal title="Add new category" routeName="category">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Category</label>
+                        <input type="text" class="form-control" name="category" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter category">
+                    </div>
+                </x-add-modal>
+            </p>
             <div class="row">
                 <div class="col-12">
 
@@ -39,7 +45,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">DataTable with default features</h3>
+                            <h3 class="card-title">Categories</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body" >
@@ -47,20 +53,15 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Account code</th>
-                                        <th>Account Name</th>
-                                        <th>Account Group</th>
-                                        <th>Account Class</th>
-                                        <th>Account Type</th>
+                                        <th>Category</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($category as $a)
+                                    @foreach ($category as $item)
                                         <tr>
-                                            <td>{{ $a->id }}</td>
-                                            <td>{{ $a->accountcode }}</td>
-                                            <td>{{ $a->account_name }}</td>
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->category }}</td>
                                             
                                             <td>
                                                 <div class="dropdown show">
@@ -71,15 +72,27 @@
                                                     </a>
 
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                        <a href="{{ route('category.edit', $a->id) }}"
+                                                        <a  data-toggle="modal" data-target="#UpdateModal{{$item->id}}"
                                                             class="dropdown-item">
                                                             <i class="nav-icon fas fa-copy" style="color: blue"></i>
-                                                            Edit</a>
-                                                        <a href="#" class="dropdown-item">
-                                                            <i class="nav-icon fas fa-cut" style="color: red"></i>
-                                                            Terminate</a>
+                                                            Edit
+                                                        </a>
+                                                        <form action="{{ route('category.destroy', $item->id)}}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="dropdown-item">
+                                                                <i class="nav-icon fas fa-cut" style="color: red"></i>
+                                                                Terminate
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </div>
+                                                <x-edit-modal title="Update category" routeName="category" :id="$item->id">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Category</label>
+                                                        <input type="text" class="form-control" name="category" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter category" value="{{ $item->category }}">
+                                                    </div>
+                                                </x-edit-modal>
                                             </td>
 
                                         </tr>
@@ -88,17 +101,6 @@
 
 
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Member ID</th>
-                                            <th>Title</th>
-                                            <th>Name</th>
-                                            <th>Savings Amount</th>
-                                            <th>Location</th>
-                                            <th>Date joined</th>
-                                            <th>Action</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                         <!-- /.card-body -->
