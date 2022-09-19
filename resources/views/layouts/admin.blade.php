@@ -150,7 +150,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             <li class="nav-item {{ Request::is('admin/stories') || Request::is('admin/stories/create')  ? 'menu-open' : '' }}">
               <a href="#" class="nav-link {{ Request::is('admin/stories') || Request::is('admin/stories/create')  ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-copy"></i>
+                    <i class="nav-icon fas fa-sticky-note"></i>
                     <p>
                         Stories
                         <i class="fas fa-angle-left right"></i>
@@ -178,7 +178,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             <li class="nav-item {{ Request::is('admin/freelancers') || Request::is('admin/freelancers/create') ? 'menu-open' : '' }}">
               <a href="#" class="nav-link {{ Request::is('admin/freelancers') || Request::is('admin/freelancers/create') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-copy"></i>
+                    <i class="nav-icon fas fa-users"></i>
                     <p>
                         Freelancer
                         <i class="fas fa-angle-left right"></i>
@@ -206,7 +206,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             <li class="nav-item {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') || Request::is('admin/page-size') || Request::is('admin/units') ? 'menu-open' : '' }}">
               <a class="nav-link {{ Request::is('admin/formation') || Request::is('admin/category') || Request::is('admin/category-price') || Request::is('admin/page-size') || Request::is('admin/units') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-copy"></i>
+                <i class="nav-icon fas fa-cog"></i>
                 <p>
                   Setups
                   <i class="fas fa-angle-left right"></i>
@@ -248,7 +248,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             <li class="nav-item {{ Request::is('admin/reports') ? 'menu-open' : '' }}">
               <a class="nav-link {{ Request::is('admin/reports') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-copy"></i>
+                <i class="nav-icon far fa-user"></i>
                 <p>
                   Reports
                   <i class="fas fa-angle-left right"></i>
@@ -265,19 +265,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               </ul>
             </li>
+            <li class="nav-item {{ Request::is('admin/users') ? 'menu-open' : '' }}">
+              <a class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-tasks"></i>
+                <p>
+                  Services
+                  <i class="fas fa-angle-left right"></i>
+
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{url('admin/users')}}" class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Users</p>
+                  </a>
+                </li>             
+
+              </ul>
+            </li>
             <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                <i class="nav-icon far fa-circle text-danger"></i>
-                                {{ __('Logout') }}
-                            </a>
+                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                    <i class="nav-icon far fa-circle text-danger"></i>
+                    {{ __('Logout') }}
+                </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-
-
-                        </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

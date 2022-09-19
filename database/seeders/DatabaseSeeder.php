@@ -20,5 +20,22 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        // \App\Models\state::truncate();
+
+        $csv = fopen(base_path('database/seeders/states.csv'), "r");
+
+        $firstline = true;
+        while (($data = fgetcsv($csv, 50, ",")) !== FALSE) {
+            if (!$firstline) {
+                \App\Models\state::create([
+                    "st_name" => $data['1'],
+                    "capital" => $data['2']
+                ]);
+            }
+            $firstline = false;
+        }
+
+        fclose($csv);
     }
 }

@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/admin/freelancers', App\Http\Controllers\Admin\FreelancerController::class);
     Route::resource('/admin/units', App\Http\Controllers\Admin\UnitsController::class);
     Route::resource('/admin/stories', App\Http\Controllers\Admin\StoriesController::class);
+    Route::resource('/admin/users', App\Http\Controllers\Admin\UserController::class);
 });
 
 
