@@ -30,7 +30,7 @@
     <section class="content">
         <div class="container-fluid">
             <p class="">
-                <a href="{{ url('admin/freelancers') }}" class="btn btn-primary">Create Freelancer</a>
+                <a href="{{ url('admin/freelancers/create') }}" class="btn btn-primary">Create Freelancer</a>
             </p>
             <div class="row">
                 <div class="col-12">

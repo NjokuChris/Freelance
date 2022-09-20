@@ -30,7 +30,7 @@
     <section class="content">
         <div class="container-fluid">
             <p class="">
-                <a href="{{ url('admin/stories') }}" class="btn btn-primary">Create Stories</a>
+                <a href="{{ url('admin/stories/create') }}" class="btn btn-primary">Create Stories</a>
             </p>
             <div class="row">
                 <div class="col-12">
