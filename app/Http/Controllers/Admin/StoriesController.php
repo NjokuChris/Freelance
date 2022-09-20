@@ -17,7 +17,7 @@ class StoriesController extends Controller
 {
     public function index()
     {
-        $stories = story::all();
+        $stories = story::paginate(5);
         $story_category = story_category::all();
         $story_formation = story_formation::all();
         $freelancers = freelancer::all();

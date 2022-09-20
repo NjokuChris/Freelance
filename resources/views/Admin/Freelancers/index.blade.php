@@ -29,6 +29,9 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <p class="">
+                <a href="{{ url('admin/freelancers') }}" class="btn btn-primary">Create Freelancer</a>
+            </p>
             <div class="row">
                 <div class="col-12">
 
@@ -144,6 +147,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{-- {{ $freelancers->links() }} --}}
                         </div>
                         <!-- /.card-body -->
                     </div>

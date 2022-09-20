@@ -115,13 +115,13 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
     <script>
         $(function() {
-            $("#exampleFormControlSelect1").change(() =>
+            $("#exampleFormControlSelect2").change(() =>
             {
-                console.log('selectedCategory');
-                var selectedCategory = $("#exampleFormControlSelect1  option:selected").html()
-                console.log(selectedCategory)
+                console.log('selectedFormation');
+                var selectedFormation = $("#exampleFormControlSelect2  option:selected").html()
+                console.log(selectedFormation)
 
-                if (selectedCategory == 'Standalone')
+                if (selectedFormation == 'Standalone')
                 {
                     $(".freelanceChx").attr("type", "radio")
                 }

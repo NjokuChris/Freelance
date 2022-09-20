@@ -14,7 +14,7 @@ class FreelancerController extends Controller
 {
     public function index()
     {
-        $freelancers = freelancer::all();
+        $freelancers = freelancer::paginate(5);
         $units = unit::all();
         $locations = state::all();
         return view('Admin.Freelancers.index', ['freelancers' => $freelancers, 'units' => $units, 'locations' => $locations]);
