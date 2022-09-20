@@ -43,7 +43,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body" >
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered table-striped mb-4">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -115,7 +115,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{-- {{ $stories->links() }} --}}
+                            {{ $stories->links() }}
                         </div>
                         <!-- /.card-body -->
                     </div>
