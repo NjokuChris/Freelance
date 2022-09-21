@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('story_categories', function (Blueprint $table) {
             $table->id();
             $table->string('category')->unique();
@@ -28,6 +29,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('story_categories');
     }
 };

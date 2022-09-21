@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('states', function (Blueprint $table) {
             $table->id();
             $table->string('st_name')->unique();
@@ -29,6 +30,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('states');
     }
 };
