@@ -43,7 +43,7 @@
                         </div>
                         @foreach($permissions as $permission)
                             <div class="form-check form-check-inline">
-                                <input type="checkbox" class="form-check-input add" id="btn-check-outlined-{{ $permission->id }}" autocomplete="off" name="permissions[]">
+                                <input type="checkbox" class="form-check-input add" id="btn-check-outlined-{{ $permission->id }}" value="{{$permission->name}}" autocomplete="off" name="permissions[]">
                                 <label class="form-check-label" for="btn-check-outlined-{{ $permission->id }}">{{ $permission->name }}</label>
                             </div>
                         @endforeach
@@ -111,7 +111,7 @@
                                                         </div>
                                                         @foreach($permissions as $permission)
                                                             <div class="form-check form-check-inline">
-                                                                <input type="checkbox" class="form-check-input edit" id="btn-check-outlined-edit-{{ $permission->id }}" autocomplete="off" name="permissions[]"  {{ $item->permissions->contains($permission) ? 'checked' : '' }}>
+                                                                <input type="checkbox" class="form-check-input edit" id="btn-check-outlined-edit-{{ $permission->id }}" autocomplete="off" value="{{$permission->name}}" name="permissions[]"  {{ $item->permissions->contains($permission) ? 'checked' : '' }}>
                                                                 <label class="form-check-label" for="btn-check-outlined-edit-{{ $permission->id }}">{{ $permission->name }}</label>
                                                             </div>
                                                         @endforeach
