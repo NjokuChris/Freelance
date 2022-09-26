@@ -104,7 +104,7 @@
                                                         <label for="exampleInputEmail1">Name</label>
                                                         <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter first name" value="{{ $item->name }}">
                                                     </div>
-                                                    <div class="row">
+                                                    <div class="form-group">
                                                         <div class="d-flex justify-content-between">
                                                             <p>Permissions</p>
                                                             <p><label><input type="checkbox" id="checkAllEdit"/> Check all/Uncheck all</label></p>

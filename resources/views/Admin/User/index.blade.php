@@ -41,6 +41,15 @@
                         <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                     </div>
                     <div class="form-group">
+                        <label for="role">Role</label>
+                        <select class="form-control" name="role" id="role">
+                            <option selected disabled>Select a role</option>
+                            @foreach($roles as $role)
+                                <option value="{{ $role->name }}" class="role{{$role->id}}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputEmail1">Password</label>
                         <input type="password" class="form-control" name="password" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password">
                     </div>
@@ -76,6 +85,7 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Role</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -85,6 +95,11 @@
                                             <td>{{ $item->id }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
+                                            <td>
+                                                @foreach ($item->getRoleNames() as $name)
+                                                    <p class="mb-0">{{ $name }}</p>
+                                                @endforeach
+                                            </td>
                                             
                                             <td>
                                                 <div class="dropdown show">
@@ -111,6 +126,15 @@
                                                     </div>
                                                 </div>
                                                 <x-edit-modal title="Update password" routeName="users" :id="$item->id">
+                                                    <div class="form-group">
+                                                        <label for="role">Role</label>
+                                                        <select class="form-control" name="role" id="role">
+                                                            <option selected disabled>Select a role</option>
+                                                            @foreach($roles as $role)
+                                                                <option value="{{ $role->name }}" class="role{{$role->id}}">{{ $role->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Password</label>
                                                         <input type="password" class="form-control" name="password" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password">

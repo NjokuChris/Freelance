@@ -9,13 +9,16 @@ use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
     public function index()
     {
         $users = User::all();
-        return view('Admin.User.index', ['users' => $users]);
+        $roles = Role::all();
+        return view('Admin.User.index', ['users' => $users, 'roles' => $roles]);
     }
 
     /**
@@ -37,6 +40,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        $user->assignRole($request->role);
 
         event(new Registered($user));
 
@@ -59,6 +63,7 @@ class UserController extends Controller
         $user = User::whereId($id)->update([
             'password' => Hash::make($request->password),
         ]);
+        $user->assignRole($request->role);
 
         event(new Registered($user));
 
