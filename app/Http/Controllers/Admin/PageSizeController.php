@@ -23,6 +23,10 @@ class PageSizeController extends Controller
      */
     public function store(Request $request, page_size $size)
     {
+        $request->validate([
+            'page_size' => ['required', 'unique:pages_sizes'],
+            'status' => ['required']
+        ]);
         $size->page_size = $request->page_size;
         $size->status = $request->status;
         $size->save();
@@ -39,6 +43,10 @@ class PageSizeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'page_size' => ['required'],
+            'status' => ['required']
+        ]);
         page_size::whereId($id)->update([
             'page_size' => $request->page_size,
             'status' => $request->status

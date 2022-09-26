@@ -14,12 +14,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Users</h1>
+                    <h1>Manage Roles</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Users</li>
+                        <li class="breadcrumb-item active">Manage-roles</li>
                     </ol>
                 </div>
             </div>
@@ -30,65 +30,54 @@
     <section class="content">
         <div class="container-fluid">
             <p class="">
-                <a class="btn btn-primary"  data-toggle="modal" data-target="#AddModal">Add New User</a>
-                <x-add-modal title="Add new user" routeName="users">
+                <a class="btn btn-primary"  data-toggle="modal" data-target="#AddModal">Create New Role</a>
+                <x-add-modal title="Add new role" routeName="roles">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Name</label>
-                        <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
+                        <label for="exampleInputEmail1">Role name</label>
+                        <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter role">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Password</label>
-                        <input type="password" class="form-control" name="password" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Confirm password</label>
-                        <input type="password" class="form-control" name="password_confirmation" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div class="d-flex justify-content-between">
+                            <p>Permissions</p>
+                            <p><label><input type="checkbox" id="checkAllAdd"/> Check all/Uncheck all</label></p>
+                        </div>
+                        @foreach($permissions as $permission)
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input add" id="btn-check-outlined-{{ $permission->id }}" autocomplete="off" name="permissions[]">
+                                <label class="form-check-label" for="btn-check-outlined-{{ $permission->id }}">{{ $permission->name }}</label>
+                            </div>
+                        @endforeach
                     </div>
                 </x-add-modal>
             </p>
             <div class="row">
                 <div class="col-12">
-                    @if ($errors->any())
-                        <div class="alert alert-danger fade show" role="alert">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li style="list-style: none">{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif  
 
                     <!-- /.card -->
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Users</h3>
+                            <h3 class="card-title">Manage roles</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body" >
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered table-striped mb-4">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Action</th>
+                                        <th>No of permissions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $item)
+                                    @foreach ($roles as $item)
                                         <tr>
                                             <td>{{ $item->id }}</td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            
+                                            <td>{{ $item->permissions->count() }}</td>
                                             <td>
                                                 <div class="dropdown show">
-                                                    <a class="btn btn-success dropdown-toggle" href="#" role="button"
+                                                    <a class="btn btn-success dropdown-toggle" role="button"
                                                         id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                                         aria-expanded="false">
                                                         Action
@@ -98,9 +87,9 @@
                                                         <a  data-toggle="modal" data-target="#UpdateModal{{$item->id}}"
                                                             class="dropdown-item">
                                                             <i class="nav-icon fas fa-copy" style="color: blue"></i>
-                                                            Update Password
+                                                            Edit
                                                         </a>
-                                                        <form action="{{ route('users.destroy', $item->id)}}" method="post">
+                                                        <form action="{{ route('roles.destroy', $item->id)}}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="dropdown-item">
@@ -110,15 +99,23 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                                <x-edit-modal title="Update password" routeName="users" :id="$item->id">
+                                                <x-edit-modal title="Update role" routeName="roles" :id="$item->id">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Password</label>
-                                                        <input type="password" class="form-control" name="password" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password">
+                                                        <label for="exampleInputEmail1">Name</label>
+                                                        <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter first name" value="{{ $item->name }}">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Confirm password</label>
-                                                        <input type="password" class="form-control" name="password_confirmation" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                                    </div>  
+                                                    <div class="row">
+                                                        <div class="d-flex justify-content-between">
+                                                            <p>Permissions</p>
+                                                            <p><label><input type="checkbox" id="checkAllEdit"/> Check all/Uncheck all</label></p>
+                                                        </div>
+                                                        @foreach($permissions as $permission)
+                                                            <div class="form-check form-check-inline">
+                                                                <input type="checkbox" class="form-check-input edit" id="btn-check-outlined-edit-{{ $permission->id }}" autocomplete="off" name="permissions[]"  {{ $item->permissions->contains($permission) ? 'checked' : '' }}>
+                                                                <label class="form-check-label" for="btn-check-outlined-edit-{{ $permission->id }}">{{ $permission->name }}</label>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
                                                 </x-edit-modal>
                                             </td>
 
@@ -137,7 +134,17 @@
         </div>
         <!-- /.container-fluid -->
     </section>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
+    <script>
+        $(document).ready(function() {
+            $("#checkAllAdd").change(function () {
+                $("input.add").prop('checked', this.checked);
+            });
+            $("#checkAllEdit").change(function () {
+                $("input.edit").prop('checked', this.checked);
+            });
+        });
+     </script>  
 @endsection
 
 @push('scripts')

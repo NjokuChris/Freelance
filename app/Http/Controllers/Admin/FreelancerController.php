@@ -35,6 +35,10 @@ class FreelancerController extends Controller
      */
     public function store(Request $request, freelancer $freelancer)
     {
+        $request->validate([
+            'f_name' => ['required'],
+            'l_name' => ['required'],
+        ]);
         $freelancer->f_name = $request->f_name;
         $freelancer->m_name = $request->m_name;
         $freelancer->l_name = $request->l_name;
@@ -56,6 +60,10 @@ class FreelancerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'f_name' => ['required'],
+            'l_name' => ['required'],
+        ]);
         freelancer::whereId($id)->update([
             'f_name' => $request->f_name,
             'm_name' => $request->m_name,

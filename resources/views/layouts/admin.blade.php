@@ -265,8 +265,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               </ul>
             </li>
-            <li class="nav-item {{ Request::is('admin/users') ? 'menu-open' : '' }}">
-              <a class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::is('admin/users') || Request::is('admin/roles') || Request::is('admin/permissions') ? 'menu-open' : '' }}">
+              <a class="nav-link {{ Request::is('admin/users') || Request::is('admin/roles') || Request::is('admin/permissions') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-tasks"></i>
                 <p>
                   Services
@@ -281,7 +281,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <p>Users</p>
                   </a>
                 </li>             
-
+                <li class="nav-item">
+                  <a href="{{url('admin/roles')}}" class="nav-link {{ Request::is('admin/roles') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Roles</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{url('admin/permissions')}}" class="nav-link {{ Request::is('admin/permissions') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Permissions</p>
+                  </a>
+                </li>
               </ul>
             </li>
             <li class="nav-item">

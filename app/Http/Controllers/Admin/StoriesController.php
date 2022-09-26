@@ -40,6 +40,14 @@ class StoriesController extends Controller
      */
     public function store(Request $request, story $story)
     {
+        $request->validate([
+            'title' => ['required'],
+            'date_publish' => ['required'],
+            'page_no' => ['required'],
+            'category_id' => ['required'],
+            'formation_id' => ['required'],
+            'freelancers' => ['required']
+        ]);
         $story->title = $request->title;
         $story->page_no = $request->page_no;
         $story->date_publish = $request->date_publish;
@@ -87,6 +95,14 @@ class StoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => ['required'],
+            'date_publish' => ['required'],
+            'page_no' => ['required'],
+            'category_id' => ['required'],
+            'formation_id' => ['required'],
+            'freelancers' => ['required']
+        ]);
         $story = story::find($id);
         $story->contributors()->detach($request->freelancers);
         $story->update([

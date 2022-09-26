@@ -45,6 +45,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/admin/units', App\Http\Controllers\Admin\UnitsController::class);
     Route::resource('/admin/stories', App\Http\Controllers\Admin\StoriesController::class);
     Route::resource('/admin/users', App\Http\Controllers\Admin\UserController::class);
+    Route::resource('/admin/roles', App\Http\Controllers\Admin\RoleController::class);
+    Route::resource('/admin/permissions', App\Http\Controllers\Admin\PermissionController::class);
 });
 
 

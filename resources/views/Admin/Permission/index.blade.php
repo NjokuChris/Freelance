@@ -14,12 +14,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Users</h1>
+                    <h1>Manage Permissions</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Users</li>
+                        <li class="breadcrumb-item active">Manage-permissions</li>
                     </ol>
                 </div>
             </div>
@@ -30,65 +30,40 @@
     <section class="content">
         <div class="container-fluid">
             <p class="">
-                <a class="btn btn-primary"  data-toggle="modal" data-target="#AddModal">Add New User</a>
-                <x-add-modal title="Add new user" routeName="users">
+                <a class="btn btn-primary"  data-toggle="modal" data-target="#AddModal">Create New Permission</a>
+                <x-add-modal title="Add new role" routeName="permissions">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Name</label>
-                        <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Password</label>
-                        <input type="password" class="form-control" name="password" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Confirm password</label>
-                        <input type="password" class="form-control" name="password_confirmation" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Permission name</label>
+                        <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter permission">
                     </div>
                 </x-add-modal>
             </p>
             <div class="row">
                 <div class="col-12">
-                    @if ($errors->any())
-                        <div class="alert alert-danger fade show" role="alert">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li style="list-style: none">{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif  
 
                     <!-- /.card -->
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Users</h3>
+                            <h3 class="card-title">Manage permissions</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body" >
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered table-striped mb-4">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $item)
+                                    @foreach ($permissions as $item)
                                         <tr>
                                             <td>{{ $item->id }}</td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            
                                             <td>
                                                 <div class="dropdown show">
-                                                    <a class="btn btn-success dropdown-toggle" href="#" role="button"
+                                                    <a class="btn btn-success dropdown-toggle" role="button"
                                                         id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                                         aria-expanded="false">
                                                         Action
@@ -98,9 +73,9 @@
                                                         <a  data-toggle="modal" data-target="#UpdateModal{{$item->id}}"
                                                             class="dropdown-item">
                                                             <i class="nav-icon fas fa-copy" style="color: blue"></i>
-                                                            Update Password
+                                                            Edit
                                                         </a>
-                                                        <form action="{{ route('users.destroy', $item->id)}}" method="post">
+                                                        <form action="{{ route('permissions.destroy', $item->id)}}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="dropdown-item">
@@ -110,15 +85,11 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                                <x-edit-modal title="Update password" routeName="users" :id="$item->id">
+                                                <x-edit-modal title="Update permission" routeName="permissions" :id="$item->id">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Password</label>
-                                                        <input type="password" class="form-control" name="password" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password">
+                                                        <label for="exampleInputEmail1">Name</label>
+                                                        <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter first name" value="{{ $item->name }}">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Confirm password</label>
-                                                        <input type="password" class="form-control" name="password_confirmation" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                                    </div>  
                                                 </x-edit-modal>
                                             </td>
 

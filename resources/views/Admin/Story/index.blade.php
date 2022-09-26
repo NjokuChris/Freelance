@@ -65,7 +65,13 @@
                                             <td>{{ $item->page_no }}</td>
                                             <td>{{ $item->date_publish }}</td>
                                             <td>{{ $item->category->category }}</td>
-                                            <td>{{ $item->formation->formation }}</td>
+                                            <td>
+                                                @if($item->formation == NULL)
+                                                    --
+                                                @else
+                                                    {{ $item->formation->formation }}
+                                                @endif
+                                            </td>
                                             <td>
                                                 @php
                                                     $amount = [];

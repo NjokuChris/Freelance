@@ -32,6 +32,10 @@ class UnitsController extends Controller
      */
     public function store(Request $request, unit $unit)
     {
+        $request->validate([
+            'unit_name' => ['required'],
+            'status' => ['required']
+        ]);
         $unit->unit_name = $request->unit_name;
         $unit->status = $request->status;
         $unit->save();
@@ -70,6 +74,10 @@ class UnitsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'unit_name' => ['required'],
+            'status' => ['required']
+        ]);
         unit::whereId($id)->update([
             'unit_name' => $request->unit_name,
             'status' => $request->status

@@ -38,6 +38,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request, story_category $category)
     {
+        $request->validate([
+            'category' => ['required', 'unique:categories']
+        ]);
         $category->category = $request->category;
         $category->save();
 
@@ -75,6 +78,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'category' => ['required']
+        ]);
         story_category::whereId($id)->update([
             'category' => $request->category,
         ]);

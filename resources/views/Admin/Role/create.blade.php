@@ -14,12 +14,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Create Freelancers</h1>
+                    <h1>Create Roles</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Create-freelancers</li>
+                        <li class="breadcrumb-item active">Create-roles</li>
                     </ol>
                 </div>
             </div>
@@ -45,47 +45,26 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Create Freelancers</h3>
+                            <h3 class="card-title">Create Roles</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body" >
-                            <form  method="post" action="{{ route('freelancers.store') }}" enctype="multipart/form-data" class="container">
+                            <form  method="post" action="{{ route('roles.store') }}" enctype="multipart/form-data" class="container">
                                 @csrf
                                 <div class="row">
-                                    <div class="form-group col">
-                                        <label for="exampleInputEmail1">First name</label>
-                                        <input type="text" class="form-control" name="f_name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter first name">
-                                    </div>
-                                    <div class="form-group col">
-                                        <label for="exampleInputEmail2">Middle name</label>
-                                        <input type="text" class="form-control" name="m_name" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter middle name">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter first name">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col">
-                                        <label for="exampleInputEmail3">Last name</label>
-                                        <input type="text" class="form-control" name="l_name" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter last name">
-                                    </div>
-                                    <div class="form-group col">
-                                        <label for="exampleFormControlSelect1">Unit</label>
-                                        <select class="form-control" name="unit_id" id="exampleFormControlSelect1">
-                                            <option selected disabled>Select a unit</option>
-                                            @foreach($units as $unit)
-                                                <option value="{{ $unit->id }}">{{ $unit->unit_name }}</option>
-                                            @endforeach
-                                    </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col">
-                                        <label for="exampleFormControlSelect2">Location</label>
-                                        <select class="form-control" name="location_id" id="exampleFormControlSelect2">
-                                            <option selected disabled>Select a location</option>
-                                            @foreach($locations as $location)
-                                                <option value="{{ $location->id }}">{{ $location->st_name }}</option>
-                                            @endforeach
-                                    </select>
-                                    </div>
+                                    {{-- foreach --}}
+                                    @foreach($permissions as $permission)
+                                        <div class="form-check form-check-inline">
+                                            <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off" name="permissions[]">
+                                            <label class="btn btn-outline-primary" for="btn-check-outlined">{{ $permission->name }}</label>
+                                        </div>
+                                    @endforeach
                                 </div>
                                 <button type="submit" class="btn btn-primary">Save changes</button>
                             </form>

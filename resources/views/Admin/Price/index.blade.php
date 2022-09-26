@@ -63,6 +63,16 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger fade show" role="alert">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li style="list-style: none">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif  
+
 
                     <!-- /.card -->
 

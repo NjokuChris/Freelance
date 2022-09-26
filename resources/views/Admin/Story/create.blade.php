@@ -31,6 +31,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    @if ($errors->any())
+                        <div class="alert alert-danger fade show" role="alert">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li style="list-style: none">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif  
 
                     <!-- /.card -->
 
@@ -73,7 +82,7 @@
                                         <select class="form-control" name="formation_id" id="exampleFormControlSelect2">
                                             <option selected disabled>Select a formation</option>
                                             @foreach($story_formation as $formation)
-                                                <option value="{{ $formation->id }}">{{ $formation->formation }}</option>
+                                                <option value="{{ $formation->id }}" class="formation{{$formation->id}}">{{ $formation->formation }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -128,6 +137,20 @@
                 else{
                     $(".freelanceChx").attr("type", "checkbox")
                 }
+
+            })
+
+            $("#exampleFormControlSelect1").change(() =>
+            {
+                var selectedCategory = $("#exampleFormControlSelect1 option:selected").val()
+
+                if (selectedCategory > 9 ){
+                    $("#exampleFormControlSelect2 option.formation2").hide()
+                }
+                else{
+                    $("#exampleFormControlSelect2 option.formation2").show()
+                }
+
             })
         });
     </script>

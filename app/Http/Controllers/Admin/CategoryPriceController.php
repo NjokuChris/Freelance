@@ -27,7 +27,12 @@ class CategoryPriceController extends Controller
      */
     public function store(Request $request, category_price $price)
     {
-        // $price->cat_price_name = story_category::where('id', $request->category_id)->select('category')->pluck('category')->first() . '_' . story_formation::where('id', $request->category_id)->select('formation')->pluck('formation')->first();
+        $request->validate([
+            'amount' => ['required'],
+            'category_id' => ['required'],
+            'formation_id' => ['required']
+        ]);
+
         if (category_price::where("category_id", $request->category_id)->exists() && category_price::where("formation_id", $request->formation_id)->exists()) {
             return back()->withInput()->with('status', 'Category price name already exists!');
         } else {
@@ -50,8 +55,12 @@ class CategoryPriceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'amount' => ['required'],
+            'category_id' => ['required'],
+            'formation_id' => ['required']
+        ]);
         category_price::whereId($id)->update([
-            // 'cat_price_name' => $request->cat_price_name,
             'amount' => $request->amount,
             'category_id' => $request->category_id,
             'formation_id' => $request->formation_id,

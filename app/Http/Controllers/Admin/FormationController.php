@@ -33,6 +33,10 @@ class FormationController extends Controller
      */
     public function store(Request $request, story_formation $formation)
     {
+        $request->validate([
+            'formation' => ['required', 'unique:formations'],
+            'status' => ['required']
+        ]);
         $formation->formation = $request->formation;
         $formation->status = $request->status;
         $formation->save();
@@ -71,13 +75,14 @@ class FormationController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'formation' => ['required'],
+            'status' => ['required']
+        ]);
         story_formation::whereId($id)->update([
             'formation' => $request->formation,
             'status' => $request->status
         ]);
-        // $formation->formation = $request->formation;
-        // $formation->status = $request->status;
-        // $formation->save();
 
         return redirect('admin/formation')->with('success', 'Formation is successfully updated');;
     }
