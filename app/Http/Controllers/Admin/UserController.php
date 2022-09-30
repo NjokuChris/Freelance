@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\category_price;
+use App\Models\freelancer;
+use App\Models\story;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -82,5 +87,24 @@ class UserController extends Controller
         $users->delete();
 
         return redirect('admin/users')->with('success', 'users is successfully deleted');
+    }
+
+    public function dashboard()
+    {
+        $start = new Carbon('first day of this month');
+        $now = Carbon::now();
+        $stories = story::all();
+        $freelancers = freelancer::all();
+        $amount = category_price::select(
+            DB::raw('sum(amount) as amount')
+        )
+            ->whereBetween(DB::raw('date(created_at)'), [$start, $now])
+            ->first('amount');
+
+        return view('Admin.index', [
+            'stories' => $stories,
+            'freelancers' => $freelancers,
+            'amount' => $amount
+        ]);
     }
 }
