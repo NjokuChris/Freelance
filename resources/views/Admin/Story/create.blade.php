@@ -70,7 +70,7 @@
                                         <label for="exampleFormControlSelect1">Category</label>
                                         <select class="form-control category" name="category_id" id="exampleFormControlSelect1">
                                             <option selected disabled>Select a category</option>
-                                            @foreach($story_category as $category)
+                                        @foreach($story_category as $category)
                                                 <option value="{{ $category->id }}">{{ $category->category }}</option>
                                             @endforeach
                                     </select>
@@ -86,6 +86,14 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    {{-- <div class="form-group col">
+                                        <label for="exampleFormControlSelect2">Freelancer</label>
+                                        <select class="form-control" name="freelancers[]" id="freelancersMulti" multiple multiselect-search="true">
+                                            @foreach($freelancers as $freelancer)
+                                                <option value="{{ $freelancer->id }}" class="freelancer{{$freelancer->id}}">{{ $freelancer->full_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div> --}}
                                     <div class="form-group col">
                                         <label for="exampleFormControlSelect4">Freelancers</label>
                                         <div class="dropdown show">
@@ -121,9 +129,10 @@
         </div>
         <!-- /.container-fluid -->
     </section>  
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
         $(function() {
+
             $("#exampleFormControlSelect2").change(() =>
             {
                 console.log('selectedFormation');

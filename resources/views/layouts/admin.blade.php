@@ -15,8 +15,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Font Awesome Icons -->
   <link rel="icon" href="{{ asset('favicon.png') }}" type='image/x-icon'>
   <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+  @yield('head')
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+  <script src="{{ asset('storage/select.js') }}"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -141,11 +143,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             {{-- <li class="nav-item menu-open"> --}}
             <li class="nav-item">
               {{-- <a href="#" class="nav-link active"> --}}
-              <a href="#" class="nav-link">
+              <a href="{{url('admin/dashboard')}}" class="nav-link {{ Request::is('admin/dashboard')  ? 'active' : '' }}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
-                  <i class="right fas fa-angle-left"></i>
+                  {{-- <i class="right fas fa-angle-left"></i> --}}
                 </p>
               </a>
               

@@ -33,9 +33,13 @@ Route::get('/DB', function () {
 //     return view('layouts.admin');
 // })->middleware(['auth'])->name('dashboard');
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/dashboard', function () {
-        return view('layouts.admin');
-    });
+    // Route::get('/dashboard', function () {
+    //     return view('layouts.admin');
+    // });
+    // Route::get('/admin/dashboard', function () {
+    //     return view('Admin.index');
+    // });
+    Route::get('/admin/dashboard', [App\Http\Controllers\Admin\UserController::class, 'dashboard'])->name('dashboard');
     Route::resource('/admin/stories', App\Http\Controllers\Admin\StoriesController::class);
     Route::resource('/admin/category', App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('/admin/formation', App\Http\Controllers\Admin\FormationController::class);
